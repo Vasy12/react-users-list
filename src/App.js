@@ -3,6 +3,7 @@ import { List } from 'immutable';
 import { getUsers } from './api';
 import './App.css';
 import UsersList from './components/UsersList';
+import SelectedUsersList from './components/SelectedUsersList';
 
 function App() {
   const [users, setUsers] = useState(new List([]));
@@ -20,17 +21,9 @@ function App() {
   if (error) return <div>Error</div>;
   return (
     <>
-      <hr />
-      <h2>
-        {'Selected users: '}
-        {users
-          .filter(u => u.isSelected)
-          .map(u => `${u.firstName ?? ''} ${u.lastName ?? ''}`.trim())
-          .filter(fullName => fullName)
-          .join(', ')}
-      </h2>
-      <hr />
-      <UsersList users={users} setUsers={setUsers} />;
+      <SelectedUsersList users={users} setUsers={setUsers} />
+
+      <UsersList users={users} setUsers={setUsers} />
     </>
   );
 }

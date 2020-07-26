@@ -7,46 +7,46 @@ import styles from './UserImage.module.scss';
 import UserInitials from './UserInitials';
 
 const UserImage = ({
-  user,
-  user: { id, firstName, lastName, profilePicture },
-  className,
-  style = {},
-  ...restProps
+	user,
+	user: { id, firstName, lastName, profilePicture },
+	className,
+	style = {},
+	...restProps
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+	const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    const img = new Image();
-    img.addEventListener('load', () => setIsLoaded(true));
-    img.src = profilePicture;
-  }, [profilePicture]);
+	useEffect(() => {
+		const img = new Image();
+		img.addEventListener('load', () => setIsLoaded(true));
+		img.src = profilePicture;
+	}, [profilePicture]);
 
-  const wrapperStyle = useMemo(
-    () => ({
-      backgroundColor: stringToColor(`${id}${firstName}${lastName}`),
-      ...style,
-    }),
-    [id, firstName, lastName, style]
-  );
+	const wrapperStyle = useMemo(
+		() => ({
+			backgroundColor: stringToColor(`${id}${firstName}${lastName}`),
+			...style,
+		}),
+		[id, firstName, lastName, style]
+	);
 
-  return (
-    <div
-      {...restProps}
-      style={wrapperStyle}
-      className={classNames(styles.imageWrapper, className)}
-    >
-      <UserInitials user={user} />
-      {isLoaded && (
-        <img src={profilePicture} alt={`${firstName} ${lastName}`} />
-      )}
-    </div>
-  );
+	return (
+		<div
+			{...restProps}
+			style={wrapperStyle}
+			className={classNames(styles.imageWrapper, className)}
+		>
+			<UserInitials user={user} />
+			{isLoaded && (
+				<img src={profilePicture} alt={`${firstName} ${lastName}`} />
+			)}
+		</div>
+	);
 };
 
 UserImage.propTypes = {
-  user: USER_PROP.isRequired,
-  className: PropTypes.string,
-  style: PropTypes.object,
+	user: USER_PROP.isRequired,
+	className: PropTypes.string,
+	style: PropTypes.object,
 };
 
 export default UserImage;

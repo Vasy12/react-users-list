@@ -5,7 +5,7 @@ import UserImage from '../UserImage';
 import styles from './UserCard.module.scss';
 import IconLink from '../IconLink';
 import Icon from '@mdi/react';
-import { mdiCheck, mdiClose } from '@mdi/js';
+import { mdiCheck, mdiMinus } from '@mdi/js';
 import classNames from 'classnames';
 
 const UserCard = ({
@@ -13,8 +13,9 @@ const UserCard = ({
   user: { firstName, lastName, contacts, isSelected },
   onRemove,
   onSelect,
-  ...rest
 }) => {
+  const getIcon = path => <Icon path={path} size={2} color={'white'} />;
+
   return (
     <article
       className={classNames(styles.container, {
@@ -26,13 +27,13 @@ const UserCard = ({
         {`${firstName ?? ''} ${lastName ?? ''}`.trim()}
       </div>
       <ul className={styles.contactsContainer}>
-        {contacts.map((c, i) => (
+        {contacts.map((contact, index) => (
           <IconLink
-            key={i}
-            href={c}
+            key={index}
+            href={contact}
             className={styles.contactLink}
             color={'#00a3b6'}
-            size={'40px'}
+            size={'3em'}
           />
         ))}
       </ul>
@@ -41,13 +42,13 @@ const UserCard = ({
           onClick={onRemove}
           className={classNames(styles.cardBtn, styles.removeBtn)}
         >
-          <Icon size={2} path={mdiClose} color="white" />
+          {getIcon(mdiMinus)}
         </button>
         <button
           onClick={onSelect}
           className={classNames(styles.cardBtn, styles.checkBtn)}
         >
-          <Icon size={2} path={mdiCheck} color="white" />
+          {getIcon(mdiCheck)}
         </button>
       </div>
     </article>

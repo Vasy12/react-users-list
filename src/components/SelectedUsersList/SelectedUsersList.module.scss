@@ -1,0 +1,48 @@
+@import './../../sass/classes';
+
+.usersList {
+  @extend %flex;
+  position: sticky;
+  background-color: rgb(255, 138, 43);
+  top: 0;
+  z-index: 10;
+  flex-wrap: wrap;
+
+  &::before,
+  &::after {
+    content: '';
+    height: 2px;
+    background-color: rgb(95, 95, 95);
+    width: 100%;
+  }
+}
+
+.userListItem {
+  @extend %flexCenter;
+
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: white;
+  border: 1px solid rgb(53, 53, 53);
+  border-radius: 20px;
+  &:empty::before {
+    content: 'anonymous';
+  }
+
+  .removeBtn {
+    $size: 20px;
+    @extend %flexCenter;
+
+    display: inline-flex;
+    width: $size;
+    height: $size;
+    padding: 0;
+    margin-left: $size / 2;
+
+    font-size: $size;
+
+    border: none;
+    background-color: rgb(255, 67, 67);
+    border-radius: 50%;
+  }
+}

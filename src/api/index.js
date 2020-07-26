@@ -16,6 +16,6 @@ const loadJson = async (input, info) => {
 export const getUsers = async (input = '/users-data.json') =>
   (await loadJson(input)).map(u => ({
     ...u,
-    isSelected: Math.random() > 0.5,
+    isSelected: false,
     isDeleted: false,
   }));

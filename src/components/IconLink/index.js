@@ -28,22 +28,21 @@ const IconLink = ({ href, className, title, ...props }) => {
       {...props}
       className={classNames(className)}
       href={href}
+      rel="noopener noreferrer"
       target="_blank"
       title={title ?? href}
     >
-      <Icon {...props} path={iconPath} />
+      <Icon {...props} path={iconPath} size={'1em'} />
     </a>
   );
 };
 
 IconLink.propTypes = {
   href: PropTypes.string.isRequired,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   color: PropTypes.string,
 };
 
 IconLink.defaultProps = {
-  size: 1,
   color: 'black',
 };
 
