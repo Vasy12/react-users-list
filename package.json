@@ -15,7 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-immutable-proptypes": "^2.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "string-to-color": "^2.2.1"
   },
   "scripts": {
